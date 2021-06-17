@@ -9,6 +9,7 @@ pub trait QubitState {
 pub struct Qubit {
     alpha: Complex<f64>,
     beta: Complex<f64>,
+    // bloch sphere representation: cos(theta/2)|0> + e^(i*phi)sin(theta/2)|1>
 }
 
 impl Qubit {
