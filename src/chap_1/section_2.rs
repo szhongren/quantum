@@ -36,3 +36,7 @@ impl Display for Qubit {
         write!(f, "({})|0> + ({})|1>", self.alpha, self.beta)
     }
 }
+
+// Bell State or EPR pair:
+// (|00> + |11>)/sqrt(2)
+// both qubits have to be entangled first
