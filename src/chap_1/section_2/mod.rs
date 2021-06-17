@@ -1,40 +1,37 @@
-use num::complex::Complex;
+use num::Complex;
 use std::fmt::Display;
 
-pub trait Qubit {
-    fn verify_total_probability(&self) -> bool;
+pub trait QubitState {
+    fn get_probability_of_0(&self) -> Complex<f64>;
+    fn get_probability_of_1(&self) -> Complex<f64>;
 }
 
-struct RealQubit {
-    alpha: f64,
-    beta: f64,
-}
-
-impl Qubit for RealQubit {
-    fn verify_total_probability(&self) -> bool {
-        self.alpha.powi(2) + self.beta.powi(2) == 1.0
-    }
-}
-
-impl Display for RealQubit {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::result::Result<(), std::fmt::Error> {
-        write!(f, "{}|0> + {}|1>", self.alpha, self.beta)
-    }
-}
-
-struct FullQubit {
+pub struct Qubit {
     alpha: Complex<f64>,
     beta: Complex<f64>,
 }
 
-impl Qubit for FullQubit {
-    fn verify_total_probability(&self) -> bool {
-        self.alpha.powi(2) + self.beta.powi(2) == Complex::new(1.0, 0.0)
+impl Qubit {
+    pub fn new(alpha_re: f64, alpha_im: f64, beta_re: f64, beta_im: f64) -> Self {
+        Self {
+            alpha: Complex::new(alpha_re, alpha_im),
+            beta: Complex::new(beta_re, beta_im),
+        }
     }
 }
 
-impl Display for FullQubit {
+impl QubitState for Qubit {
+    fn get_probability_of_0(&self) -> Complex<f64> {
+        self.alpha.powi(2)
+    }
+
+    fn get_probability_of_1(&self) -> Complex<f64> {
+        self.beta.powi(2)
+    }
+}
+
+impl Display for Qubit {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::result::Result<(), std::fmt::Error> {
-        write!(f, "{}|0> + {}|1>", self.alpha, self.beta)
+        write!(f, "({})|0> + ({})|1>", self.alpha, self.beta)
     }
 }
