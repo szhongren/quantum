@@ -70,7 +70,7 @@ pub fn cnot_gate(qubit1: QubitVector, qubit2: QubitVector) -> (QubitVector, Qubi
     let result = mat * combined;
     println!("{}", result);
     (
-        QubitVector::new(result.w, result.x),
-        QubitVector::new(result.y, result.z),
+        QubitVector::new(result.x, result.y),
+        QubitVector::new(result.z, result.w),
     )
 }
