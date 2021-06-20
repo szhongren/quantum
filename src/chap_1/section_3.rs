@@ -1,5 +1,5 @@
 use nalgebra::{Matrix2, Matrix4, Vector4};
-use num::{complex::Complex, One, Zero};
+use num::{Complex, One, Zero};
 
 use super::section_2::QubitVector;
 
@@ -46,25 +46,29 @@ pub fn h_gate(qubit: QubitVector) -> QubitVector {
 
 pub fn cnot_gate(qubit1: QubitVector, qubit2: QubitVector) -> (QubitVector, QubitVector) {
     let combined = Vector4::new(qubit1.x, qubit1.y, qubit2.x, qubit2.y);
+    println!("{}", qubit1);
+    println!("{}", qubit2);
+    println!("{}", combined);
     let mat = Matrix4::new(
-        Complex::new(1.0, 0.0),
-        Complex::new(0.0, 0.0),
-        Complex::new(0.0, 0.0),
-        Complex::new(0.0, 0.0),
-        Complex::new(0.0, 0.0),
-        Complex::new(1.0, 0.0),
-        Complex::new(0.0, 0.0),
-        Complex::new(0.0, 0.0),
-        Complex::new(0.0, 0.0),
-        Complex::new(0.0, 0.0),
-        Complex::new(0.0, 0.0),
-        Complex::new(1.0, 0.0),
-        Complex::new(0.0, 0.0),
-        Complex::new(0.0, 0.0),
-        Complex::new(1.0, 0.0),
-        Complex::new(0.0, 0.0),
+        Complex::one(),
+        Complex::zero(),
+        Complex::zero(),
+        Complex::zero(),
+        Complex::zero(),
+        Complex::one(),
+        Complex::zero(),
+        Complex::zero(),
+        Complex::zero(),
+        Complex::zero(),
+        Complex::zero(),
+        Complex::one(),
+        Complex::zero(),
+        Complex::zero(),
+        Complex::one(),
+        Complex::zero(),
     );
     let result = mat * combined;
+    println!("{}", result);
     (
         QubitVector::new(result.w, result.x),
         QubitVector::new(result.y, result.z),
