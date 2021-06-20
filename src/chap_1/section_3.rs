@@ -45,10 +45,12 @@ pub fn h_gate(qubit: QubitVector) -> QubitVector {
 // | 0, e^(ib/2)  |, which is a rotation about the z axis
 
 pub fn cnot_gate(qubit1: QubitVector, qubit2: QubitVector) -> (QubitVector, QubitVector) {
-    let combined = Vector4::new(qubit1.x, qubit1.y, qubit2.x, qubit2.y);
-    println!("{}", qubit1);
-    println!("{}", qubit2);
-    println!("{}", combined);
+    let tensor_product = Vector4::new(
+        qubit1.x * qubit2.x,
+        qubit1.x * qubit2.y,
+        qubit1.y * qubit2.x,
+        qubit1.y * qubit2.y,
+    );
     let mat = Matrix4::new(
         Complex::one(),
         Complex::zero(),
@@ -67,8 +69,7 @@ pub fn cnot_gate(qubit1: QubitVector, qubit2: QubitVector) -> (QubitVector, Qubi
         Complex::one(),
         Complex::zero(),
     );
-    let result = mat * combined;
-    println!("{}", result);
+    let result = mat * tensor_product;
     (
         QubitVector::new(result.x, result.y),
         QubitVector::new(result.z, result.w),
