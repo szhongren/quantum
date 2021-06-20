@@ -13,9 +13,18 @@ fn main() {
     println!("{}", z_gate(complex));
     println!("{}", h_gate(complex));
     println!("{}", h_gate(h_gate(complex)));
-    let a = QubitVector::new(Complex::one(), Complex::zero());
-    let b = QubitVector::new(Complex::zero(), Complex::one());
-    let (x, y) = cnot_gate(a, b);
-    println!("{}", x);
-    println!("{}", y);
+    // let zero = QubitVector::new(Complex::one(), Complex::zero());
+    // let one = QubitVector::new(Complex::zero(), Complex::one());
+    // let (a, i) = cnot_gate(zero, zero);
+    // let (b, j) = cnot_gate(zero, one);
+    // let (c, k) = cnot_gate(one, zero);
+    // let (d, l) = cnot_gate(one, one);
+    // println!("{}", a);
+    // println!("{}", i);
+    // println!("{}", b);
+    // println!("{}", j);
+    // println!("{}", c);
+    // println!("{}", k);
+    // println!("{}", d);
+    // println!("{}", l);
 }
