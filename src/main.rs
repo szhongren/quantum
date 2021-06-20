@@ -10,4 +10,5 @@ fn main() {
     println!("{}", x_gate(complex));
     println!("{}", z_gate(complex));
     println!("{}", h_gate(complex));
+    println!("{}", h_gate(h_gate(complex)));
 }
