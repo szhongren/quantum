@@ -36,3 +36,10 @@ pub fn h_gate(qubit: QubitVector) -> QubitVector {
     );
     mat * qubit
 }
+
+// generally, any single qubit gate can be decomposed into:
+// | cos(y/2), -sin(y/2) |
+// | sin(y/2), cos(y/2)  |, which is a rotation
+// and
+// | e^(-ib/2), 0 |
+// | 0, e^(ib/2)  |, which is a rotation about the z axis
