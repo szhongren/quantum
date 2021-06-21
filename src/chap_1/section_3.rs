@@ -56,32 +56,28 @@ pub fn h_gate(qubit: &QubitVector) -> QubitVector {
 // | e^(-ib/2), 0 |
 // | 0, e^(ib/2)  |, which is a rotation about the z axis
 
-// pub fn cnot_gate(qubit1: QubitVector, qubit2: QubitVector) -> (QubitVector, QubitVector) {
-//     let mat = DMatrix::from_vec(
-//         4,
-//         4,
-//         vec![
-//             Complex::one(),
-//             Complex::zero(),
-//             Complex::zero(),
-//             Complex::zero(),
-//             Complex::zero(),
-//             Complex::one(),
-//             Complex::zero(),
-//             Complex::zero(),
-//             Complex::zero(),
-//             Complex::zero(),
-//             Complex::zero(),
-//             Complex::one(),
-//             Complex::zero(),
-//             Complex::zero(),
-//             Complex::one(),
-//             Complex::zero(),
-//         ],
-//     );
-//     let result = mat * qubit1.kronecker(&qubit2);
-//     (
-//         QubitVector::new(result.x, result.y),
-//         QubitVector::new(result.z, result.w),
-//     )
-// }
+pub fn cnot_gate(qubit1: &QubitVector, qubit2: &QubitVector) -> QubitVector {
+    let mat = DMatrix::from_vec(
+        4,
+        4,
+        vec![
+            Complex::one(),
+            Complex::zero(),
+            Complex::zero(),
+            Complex::zero(),
+            Complex::zero(),
+            Complex::one(),
+            Complex::zero(),
+            Complex::zero(),
+            Complex::zero(),
+            Complex::zero(),
+            Complex::zero(),
+            Complex::one(),
+            Complex::zero(),
+            Complex::zero(),
+            Complex::one(),
+            Complex::zero(),
+        ],
+    );
+    mat * qubit1.kronecker(&qubit2)
+}
