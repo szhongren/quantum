@@ -1,4 +1,4 @@
-use nalgebra::Vector2;
+use nalgebra::DVector;
 use num::Complex;
 use std::fmt::Display;
 
@@ -13,8 +13,9 @@ pub struct Qubit {
     // bloch sphere representation: cos(theta/2)|0> + e^(i*phi)sin(theta/2)|1>
 }
 
-pub type QubitVector = Vector2<Complex<f64>>;
+pub type QubitVector = DVector<Complex<f64>>;
 
+#[allow(dead_code)]
 impl Qubit {
     pub fn new(alpha_re: f64, alpha_im: f64, beta_re: f64, beta_im: f64) -> Self {
         Self {
