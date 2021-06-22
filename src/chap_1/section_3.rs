@@ -55,6 +55,7 @@ pub fn h_gate(qubit: &super::section_2::QubitVector) -> super::section_2::QubitV
 // | 0, e^(ib/2)  |, which is a rotation about the z axis
 
 pub fn cnot_gate(kronecker: super::section_2::QubitVector) -> super::section_2::QubitVector {
+    // also called cx_gate
     // any multiple qubit logic gate may be composed from cnot and single qubit gates, similar to how nand is universal
     let mat = DMatrix::from_vec(
         4,
