@@ -24,5 +24,6 @@ fn main() {
     println!("{}", cnot_gate(zero.kronecker(&one)));
     println!("{}", cnot_gate(one.kronecker(&zero)));
     println!("{}", cnot_gate(one.kronecker(&one)));
+    // this swaps the 2 qubits
     println!("{}", cnot_gate(cnot_gate(cnot_gate(zero.kronecker(&zero)))));
 }

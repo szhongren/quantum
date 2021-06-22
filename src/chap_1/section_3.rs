@@ -87,3 +87,8 @@ pub fn cnot_gate(kronecker: super::section_2::QubitVector) -> super::section_2::
 // |R> and |L> are right and left of the bloch sphere, on the y axis
 // this means that you can define a qubit in any of the above bases, and the vector is not necessarily |0> and |1>
 // each of these pairs must be orthonormal, to preserve |a|^2 + |b|^2 = 1, where orthonormal here just means opposite on bloch sphere
+
+// there are features allowed in classical circuits that usually don't exist in quantum circuits
+// 1. no loops, so quantum circuits are always acyclic
+// 2. no FANIN, which is when 2+ wires are joined into 1, which is basically an OR, so quantum circuits cannot have this irreversible operation
+// 3. no FANOUT, which is when a single wire becomes 2+ wires, which copies the bit, because quantum mechanics forbids the copying of a qubit
