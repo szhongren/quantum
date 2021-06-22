@@ -14,13 +14,15 @@ fn main() {
     println!("{}", h_gate(&h_gate(&complex)));
     let zero = QubitVector::from_vec(vec![Complex::one(), Complex::zero()]);
     let one = QubitVector::from_vec(vec![Complex::zero(), Complex::one()]);
+    println!("kronecker products");
     println!("{}", zero.kronecker(&zero));
     println!("{}", zero.kronecker(&one));
     println!("{}", one.kronecker(&zero));
     println!("{}", one.kronecker(&one));
-    println!("{}", cnot_gate(&zero, &zero));
-    println!("{}", cnot_gate(&zero, &one));
-    println!("{}", cnot_gate(&one, &zero));
-    println!("{}", cnot_gate(&one, &one));
-    // zero.tensor_product(zero);
+    println!("cnot gates");
+    println!("{}", cnot_gate(zero.kronecker(&zero)));
+    println!("{}", cnot_gate(zero.kronecker(&one)));
+    println!("{}", cnot_gate(one.kronecker(&zero)));
+    println!("{}", cnot_gate(one.kronecker(&one)));
+    println!("{}", cnot_gate(cnot_gate(cnot_gate(zero.kronecker(&zero)))));
 }
