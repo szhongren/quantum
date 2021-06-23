@@ -3,7 +3,7 @@ mod chap_1;
 use chap_1::section_2::QubitVector;
 use num::{Complex, One, Zero};
 
-use crate::chap_1::section_3::{cnot_gate, h_gate, x_gate, z_gate};
+use crate::chap_1::section_3::{cnot_gate, h_gate, interchange, x_gate, z_gate};
 
 fn main() {
     let complex = QubitVector::from_vec(vec![Complex::zero(), Complex::one()]);
@@ -25,5 +25,6 @@ fn main() {
     println!("{}", cnot_gate(one.kronecker(&zero)));
     println!("{}", cnot_gate(one.kronecker(&one)));
     // this swaps the 2 qubits
-    println!("{}", cnot_gate(cnot_gate(cnot_gate(zero.kronecker(&zero)))));
+    println!("{:?}", zero.kronecker(&one));
+    println!("{}", interchange(zero.kronecker(&one)));
 }
