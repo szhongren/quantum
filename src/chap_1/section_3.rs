@@ -1,6 +1,41 @@
 use nalgebra::DMatrix;
 use num::{Complex, One, Zero};
 
+use crate::chap_1::section_2::QubitVector;
+
+pub fn section_3() {
+    let complex = QubitVector::from_vec(vec![Complex::zero(), Complex::one()]);
+    println!("{}", complex);
+    println!("{}", x_gate(&complex));
+    println!("{}", z_gate(&complex));
+    println!("{}", h_gate(&complex));
+    println!("{}", h_gate(&h_gate(&complex)));
+    let zero = QubitVector::from_vec(vec![Complex::one(), Complex::zero()]);
+    let one = QubitVector::from_vec(vec![Complex::zero(), Complex::one()]);
+    println!("kronecker products");
+    println!("{}", zero.kronecker(&zero));
+    println!("{}", zero.kronecker(&one));
+    println!("{}", one.kronecker(&zero));
+    println!("{}", one.kronecker(&one));
+    println!("cnot gates");
+    println!("{}", cnot_gate(zero.kronecker(&zero)));
+    println!("{}", cnot_gate(zero.kronecker(&one)));
+    println!("{}", cnot_gate(one.kronecker(&zero)));
+    println!("{}", cnot_gate(one.kronecker(&one)));
+    // this swaps the 2 qubits
+    println!("{:?}", zero.kronecker(&one));
+    println!("{}", interchange(zero.kronecker(&one)));
+    // creating bell states
+    println!("{}", cnot_gate(h_gate(&zero).kronecker(&zero)));
+    // |00> -> (|00> + |11>)/sqrt(2)
+    println!("{}", cnot_gate(h_gate(&zero).kronecker(&one)));
+    // |01> -> (|01> + |10>)/sqrt(2)
+    println!("{}", cnot_gate(h_gate(&one).kronecker(&zero)));
+    // |10> -> (|00> - |11>)/sqrt(2)
+    println!("{}", cnot_gate(h_gate(&one).kronecker(&one)));
+    // |11> -> (|01> - |10>)/sqrt(2)
+}
+
 pub fn x_gate(qubit: &super::section_2::QubitVector) -> super::section_2::QubitVector {
     // a|0> + b|1> -> b|0> + a|1>
     let mat = DMatrix::from_vec(
