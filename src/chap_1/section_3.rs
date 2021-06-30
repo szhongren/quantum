@@ -4,12 +4,22 @@ use num::{Complex, One, Zero};
 use crate::chap_1::section_2::QubitVector;
 
 pub fn section_3() {
+    single_qubit_gates();
+    multiple_qubit_gates();
+    swap_qubits();
+    bell_states();
+}
+
+fn single_qubit_gates() {
     let complex = QubitVector::from_vec(vec![Complex::zero(), Complex::one()]);
     println!("{}", complex);
     println!("{}", x_gate(&complex));
     println!("{}", z_gate(&complex));
     println!("{}", h_gate(&complex));
     println!("{}", h_gate(&h_gate(&complex)));
+}
+
+fn multiple_qubit_gates() {
     let zero = QubitVector::from_vec(vec![Complex::one(), Complex::zero()]);
     let one = QubitVector::from_vec(vec![Complex::zero(), Complex::one()]);
     println!("kronecker products");
@@ -22,9 +32,19 @@ pub fn section_3() {
     println!("{}", cnot_gate(zero.kronecker(&one)));
     println!("{}", cnot_gate(one.kronecker(&zero)));
     println!("{}", cnot_gate(one.kronecker(&one)));
+}
+
+fn swap_qubits() {
+    let zero = QubitVector::from_vec(vec![Complex::one(), Complex::zero()]);
+    let one = QubitVector::from_vec(vec![Complex::zero(), Complex::one()]);
     // this swaps the 2 qubits
     println!("{:?}", zero.kronecker(&one));
     println!("{}", interchange(zero.kronecker(&one)));
+}
+
+fn bell_states() {
+    let zero = QubitVector::from_vec(vec![Complex::one(), Complex::zero()]);
+    let one = QubitVector::from_vec(vec![Complex::zero(), Complex::one()]);
     // creating bell states
     println!("{}", cnot_gate(h_gate(&zero).kronecker(&zero)));
     // |00> -> (|00> + |11>)/sqrt(2)
