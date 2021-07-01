@@ -32,3 +32,6 @@ pub fn classical_toffoli_gate(a: bool, b: bool, c: bool) -> bool {
         c
     }
 }
+
+// hadamard transform is when you have n parallel Hadamard gates operating on n qubits
+// transforms each qubit into a superposition of |0> and |1>
