@@ -60,3 +60,8 @@ pub fn classical_toffoli_gate(a: bool, b: bool, c: bool) -> bool {
 //    1. either f(x) is constant for all values of x
 //    2. or else f(x) is balanced, that is, equal to 1 for exactly half of all the possible x, and 0 for the other half
 // 4. Alice's goal is to determine with certainty whether Bob has chosen a constant or a balanced function, corresponding with Bob as little as possible
+
+// in the classical case, assume that Alice can only send Bob one value of x in each letter
+// in each letter, Alice sends x bits of information
+// in the worst case, Alice needs 2^n/2 + 1 queries to know if the function is balanced or not
+// however, in the quantum case, if Alice and Bob exchange qubits, and Bob agrees to calculate f(x) with a unitary transform U_f, then only 1 query is needed
